@@ -1,7 +1,10 @@
 # eg_clustering_code
 This repo contains the code for clustering, postprocessing, and mapping the clusters of villages which we generated for EG. 
 
-## Important files and workflow of code:
+## Algorithm formulation
+![Table 1](Table_1.png)
+![Table 2](Table_2.png)
+## Functionality
 
 ### Kmeans_IP_formulation.py: 
 This file contains the classes and functions necessary to run the initial clustering algorithm. It implements a modified K-means algorithm in which the cluster assignment step is an embedded integer program solved using the PuLP package. The algorithm is run using the **Kmeans_IP_run.py** file. The results of this algorithm are stored in the Excel files in the folder Excel_results/Kmean_IP. In addition, some graphs to help diagnose whether the algorithm is converging properly are saved to the Kmeans_functionality_figures folder.
