@@ -1,12 +1,33 @@
 # Village selection and clustering algorithm
-I built this algorithm to help an education NGO expand operationalize the output of our machine learning algorithm. The algorithm we built predicts the number of out of school children present in villages across India to help the NGO target areas with high unenrollment. To implement their program that re-enrolls out of school children the NGO needs to be able to assign field coordinators to clusters of villages (ie. villages need to be within ~15km to 5-6 other high impact villages). To help the NGO operationalize the out of school children predictions we built a customized second algorithm that identifies the optimal set of villages for expansion and clusters them for assignment to field coordinators. The algorithm uses a combination of unsupervised learning and integer programming (convex optimization) to select and cluster villages in a way that maximizes the number of out of school children reached while minimizing the distance between villages. A series of postprocessing heuristics help make the clusters equally sized. The output of this algorithm is then visualized in a series of interactive maps.
+I built this algorithm to help an education NGO adapt the output of a machine learning model to match their operational constraints. The NGO works on finding and re-enrolling out of school children (OOSC) and the machine learning model was designed to help predict the number of out of school children present in villages across India so they could target areas with high unenrollment. To implement their program though, the NGO needs to assign field coordinators to clusters of villages (ie. villages need to be within ~15km to 5-6 other high impact villages). To help the NGO operationalize the out of school children predictions into a feasible targeting strategy, I built a customized second algorithm that identifies the optimal set of villages for expansion and clusters them for assignment to field coordinators. The algorithm uses a combination of unsupervised learning and integer programming (convex optimization) to select villages that both have lots of out of school children and are close to other villages with lots of out of school children. This is implemented in Systematic_postprocessing_run.py and Systematic_postprocessing_formulation.py. A series of postprocessing heuristics implemented in Systematic_postprocessing_formulation.py and Systematic_postprocessing_run.py help make the clusters equally sized. The output of this algorithm is then visualized in a series of interactive maps.
 
 ## Algorithm formulation
 The following outlines the mathematical formulation of the algorithm which I built. This is what I programmed in Kmeans_IP_formulation.py. Table 1 defines all variables and Table 2 outlines how they were formulated into an optimization function and constraints for the integer program.
 
 ![Table 1](Table_1.png)
 ![Table 2](Table_2.png)
-## Functionality
+
+## Dependencies
+The selection and clustering algorithm and postprocessing scripts collectively require the following all of which are available through pip and conda:
+```pulp
+random
+argparse
+numpy
+pandas
+matplotlib
+geopy
+math
+sklearn
+ipywidgets
+gmaps
+json
+random
+```
+
+These scripts are compatible with all versions of Python 3. 
+
+
+## Functionality details
 
 ### Kmeans_IP_formulation.py: 
 This file contains the classes and functions necessary to run the initial clustering algorithm. It implements a modified K-means algorithm in which the cluster assignment step is an embedded integer program solved using the PuLP package. The algorithm is run using the **Kmeans_IP_run.py** file. The results of this algorithm are stored in the Excel files in the folder Excel_results/Kmean_IP. In addition, some graphs to help diagnose whether the algorithm is converging properly are saved to the Kmeans_functionality_figures folder.
