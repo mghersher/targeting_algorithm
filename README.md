@@ -1,7 +1,9 @@
-# eg_clustering_code
-This repo contains the code for clustering, postprocessing, and mapping the clusters of villages which we generated for EG. 
+# Village selection and clustering algorithm
+I built this algorithm to help an education NGO expand operationalize the output of our machine learning algorithm. The algorithm we built predicts the number of out of school children present in villages across India to help the NGO target areas with high unenrollment. To implement their program that re-enrolls out of school children the NGO needs to be able to assign field coordinators to clusters of villages (ie. villages need to be within ~15km to 5-6 other high impact villages). To help the NGO operationalize the out of school children predictions we built a customized second algorithm that identifies the optimal set of villages for expansion and clusters them for assignment to field coordinators. The algorithm uses a combination of unsupervised learning and integer programming (convex optimization) to select and cluster villages in a way that maximizes the number of out of school children reached while minimizing the distance between villages. A series of postprocessing heuristics help make the clusters equally sized. The output of this algorithm is then visualized in a series of interactive maps.
 
 ## Algorithm formulation
+The following outlines the mathematical formulation of the algorithm which I built. This is what I programmed in Kmeans_IP_formulation.py. Table 1 defines all variables and Table 2 outlines how they were formulated into an optimization function and constraints for the integer program.
+
 ![Table 1](Table_1.png)
 ![Table 2](Table_2.png)
 ## Functionality
