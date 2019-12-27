@@ -2,13 +2,13 @@
 I built this algorithm to help an education NGO adapt the output of a machine learning model to match their operational constraints. The NGO works on finding and re-enrolling out of school children (OOSC) and the machine learning model was designed to help predict the number of out of school children present in villages across India so they could target areas with high unenrollment. To implement their program though, the NGO needs to assign field coordinators to clusters of villages (ie. villages need to be within ~15km to 5-6 other high impact villages). To help the NGO operationalize the out of school children predictions into a feasible targeting strategy, I built a customized second algorithm that identifies the optimal set of villages for expansion and clusters them for assignment to field coordinators. The algorithm uses a combination of unsupervised learning and integer programming (convex optimization) to select villages that both have lots of out of school children and are close to other villages with lots of out of school children. This is implemented in Systematic_postprocessing_run.py and Systematic_postprocessing_formulation.py. A series of postprocessing heuristics implemented in Systematic_postprocessing_formulation.py and Systematic_postprocessing_run.py help make the clusters equally sized. The output of this algorithm is then visualized in a series of interactive maps.
 
 ## Algorithm formulation
-The following outlines the mathematical formulation of the algorithm which I built. This is what I programmed in Kmeans_IP_formulation.py. Table 1 defines all variables and Table 2 outlines how they were formulated into an optimization function and constraints for the integer program.
+The following outlines the mathematical formulation of the algorithm which I built. It is this formulation that I programmed in the Kmeans_IP_formulation.py script. Table 1 defines all variables and Table 2 outlines how they were formulated into an optimization function and constraints for the integer program.
 
 ![Table 1](Table_1.png)
 ![Table 2](Table_2.png)
 
 ## Dependencies
-The selection and clustering algorithm and postprocessing scripts collectively require the following all of which are available through pip and conda:
+The selection and clustering algorithm and postprocessing scripts collectively require the following, all of which are available through pip and conda:
 ```pulp
 random
 argparse
@@ -45,14 +45,17 @@ cd maps/maps_code
 jupyter notebook
 ```
 
-**The exported map has the following elements:**
-- [ ] Village markers sized in proportion to the number of predicted OOSC. Purple markers represent unclustered villages and navy markers represent clustered villages we recommend EG expand into. Markers can be clicked to display a textbox with the village name, block name, and cluster ID.
-- [ ] Polygons representing the outer border of clusters. Polygons are colored such that clusters in the same block are the same color.
+**Guide to interpreting exported .html maps:**
+![Map example](Clusters.png)
+
+- Village markers are sized in proportion to the number of predicted OOSC. Purple markers represent unclustered villages and navy markers represent clustered villages we recommend EG expand into. Markers can be clicked to display a textbox with the village name, block name, and cluster ID.
+- Polygons represent the outer border of clusters. Polygons are colored such that clusters in the same block are the same color.
+
 	
 **Important items to keep updated in Colored_by_block.ipynb:**
-- [ ] **Dataframe being mapped:** This code is setup to currently map the final postprocessed results, but this can be changed by modifying the filepath indicated in the ipynb to load a different results dataframe from Excel_results. If you change the filepath also change the stage variable at the top of the notebook to reflect the postprocessing step you're mapping. This will modify the figure file name appropriately and allow the saving of multiple maps at once. If the same postprocessing stage is mapped multiple times, the map associated with that stage will be overwritten by the most recent map generated.
-- [ ] **The districts being mapped:** The notebook prints two maps, one of Shivpuri district and another of the Khargone/Khandwa districts (combining the maps exceeds the capacity of the gmaps plotting package and creates html files that are very slow to load). To specify which map you'd like to generate, follow the instructions outlined at the top of the notebook.
+- **Dataframe being mapped:** This code is set up to currently map the final postprocessed results, but this can be changed by modifying the filepath indicated in the ipynb to load a different results dataframe from Excel_results. If you change the filepath also change the stage variable at the top of the notebook to reflect the postprocessing step you're mapping. This will modify the figure file name appropriately and allow the saving of multiple maps at once. If the same postprocessing stage is mapped multiple times, the map associated with that stage will be overwritten by the most recent map generated.
+- **The districts being mapped:** The notebook prints two maps, one of Shivpuri district and another of the Khargone/Khandwa districts (combining the maps exceeds the capacity of the gmaps plotting package and creates html files that are very slow to load). To specify which map you'd like to generate, follow the instructions outlined at the top of the notebook.
 
-**Important note on .html file size**: Each time the notebook is used to generate a .html map file, **restart the kernel**, otherwise the .html file size becomes excessively large.
+**Important note on .html file size**: Each time the notebook is used to generate a .html map file, **restart the kernel**, otherwise the .html files become excessively large.
 	
-*Alternative mapping option*: To run a map which is colored to help diagnose clustering deficiencies run the *Diagnostic_coloring.ipynb* file instead of the *Colored_by_block.ipynb*
+*Alternative mapping option*: To run a map which is colored to help diagnose clustering deficiencies, run the *Diagnostic_coloring.ipynb* file instead of the *Colored_by_block.ipynb*
