@@ -38,7 +38,7 @@ This file contains the classes and functions necessary to run the initial cluste
 This file contains the functions necessary to run a series of sequential postprocessing algorithms on the K-means/IP output and generate summary statistics of the clusters at each step. The postprocessing algorithms are run using the **Systematic_postprocessing_run.py** file. The results of these algorithms are stored in the Postprocessing and Renumbered subfolders of the Excel_results folder. Some basic summary statistics are printed to the console, while more detailed summary statistics are printed to each excel file which is saved in the excel_results folder. In addition, basic histograms are generated for each step of the postprocessing and saved in the stats_figures folder. *Note: The postprocessing_small_if_few() function in systematic_postprocessing_formulation.py should be modified to not exclude cluster 4 if this algorithm is run on new data.*
 
 ### Colored_by_block.ipynb: 
-This jupyter notebook uses the gmaps python package to create an interactive Google Map with the clustering results plotted on top of it. Using the ipywidgets infrastructure, notebook exports the map as a .html file that is saved in maps/html_files. A legend of block colors and names is exported to maps/legends. 
+This jupyter notebook uses the gmaps python package to create an interactive Google Map with the clustering results plotted on top of it. Using the ipywidgets infrastructure, the notebook exports the map as a .html file that is saved in maps/html_files. A legend of block colors and names is exported to maps/legends. 
 
 **Guide to interpreting interactive maps:**
 ![Map example](Clusters.png)
