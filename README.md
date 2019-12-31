@@ -43,7 +43,7 @@ This jupyter notebook uses the gmaps python package to create an interactive Goo
 **Guide to interpreting interactive maps:**
 ![Map example](Clusters.png)
 
-- Village markers are sized in proportion to the number of predicted OOSC. Purple markers represent unclustered villages and navy markers represent clustered villages we recommend EG expand into. Markers can be clicked to display a textbox with the village name, block name, and cluster ID.
+- Village markers are sized in proportion to the number of predicted OOSC. Purple markers represent unclustered villages and navy markers represent clustered villages we recommend the NGO expand into. Markers can be clicked to display a textbox with the village name, block name, and cluster ID.
 - Polygons represent the outer border of clusters. Polygons are colored such that clusters in the same block are the same color.
 
 	
