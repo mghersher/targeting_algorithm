@@ -40,14 +40,7 @@ This file contains the functions necessary to run a series of sequential postpro
 ### Colored_by_block.ipynb: 
 This jupyter notebook uses the gmaps python package to create an interactive Google Map with the clustering results plotted on top of it. Using the ipywidgets infrastructure, notebook exports the map as a .html file that is saved in maps/html_files. A legend of block colors and names is exported to maps/legends. 
 
-**Running the notebook**: From terminal, cd into the EG_clustering_code folder of the local github repository and copy the following commands to open the notebook on a local server:
-
-```
-cd maps/maps_code
-jupyter notebook
-```
-
-**Guide to interpreting exported .html maps:**
+**Guide to interpreting interactive maps:**
 ![Map example](Clusters.png)
 
 - Village markers are sized in proportion to the number of predicted OOSC. Purple markers represent unclustered villages and navy markers represent clustered villages we recommend EG expand into. Markers can be clicked to display a textbox with the village name, block name, and cluster ID.
